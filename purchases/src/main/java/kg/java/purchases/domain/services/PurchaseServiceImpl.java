@@ -12,6 +12,9 @@ import kg.java.purchases.data.PurchaseRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Transactional
 public class PurchaseServiceImpl implements PurchaseService {
@@ -63,6 +66,12 @@ public class PurchaseServiceImpl implements PurchaseService {
     public PurchaseDto findById(FindByIdPurchaseDto model) throws EntityNotFoundException {
         var purchase = purchaseRepository.findById(model.getId()).orElseThrow(EntityNotFoundException::new);
         return PurchaseMapper.PURCHASE_MAPPER.toDomain(purchase);
+    }
+
+    @Override
+    public List<PurchaseDto> findByBuyerName(FindPurchasesByBuyerNameDto model) {
+        var purchases = purchaseRepository.findByBuyerName(model.getBuyerName());
+        return purchases.stream().map(PurchaseMapper.PURCHASE_MAPPER::toDomain).collect(Collectors.toList());
     }
 
 }
