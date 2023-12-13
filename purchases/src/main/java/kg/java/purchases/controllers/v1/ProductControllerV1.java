@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/product")
 public class ProductControllerV1 {
@@ -58,6 +60,15 @@ public class ProductControllerV1 {
             return ResponseEntity.ok(productFacade.findById(model));
         }catch (EntityNotFoundException e){
             return ResponseEntity.badRequest().build();
+        }
+        catch (Exception e){
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+    @PostMapping("/coast")
+    public ResponseEntity<List<ProductDto>> findByCoast(@RequestBody FindProductsByCoastDto model){
+        try {
+            return ResponseEntity.ok(productFacade.findByCoast(model));
         }
         catch (Exception e){
             return ResponseEntity.internalServerError().build();
