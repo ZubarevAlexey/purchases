@@ -9,6 +9,8 @@ import kg.java.purchases.core.models.dtos.product.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class ProductFacadeImpl implements ProductFacade {
@@ -36,5 +38,10 @@ public class ProductFacadeImpl implements ProductFacade {
     @Override
     public ProductDto findById(FindByIdProductDto model) throws EntityNotFoundException {
         return productService.findById(model);
+    }
+
+    @Override
+    public List<ProductDto> findByCoast(FindProductsByCoastDto model) {
+        return productService.findByCoast(model);
     }
 }
