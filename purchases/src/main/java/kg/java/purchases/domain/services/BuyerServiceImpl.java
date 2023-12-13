@@ -10,6 +10,9 @@ import kg.java.purchases.data.BuyerRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Transactional
 public class BuyerServiceImpl implements BuyerService {
@@ -51,6 +54,12 @@ public class BuyerServiceImpl implements BuyerService {
     public BuyerDto findById(FindByIdBuyerDto model) throws EntityNotFoundException {
         var buyer = buyerRepository.findById(model.getId()).orElseThrow(EntityNotFoundException::new);
         return BuyerMapper.BUYER_MAPPER.toDomain(buyer);
+    }
+
+    @Override
+    public List<BuyerDto> findByName(FindBuyersByNameDto model) {
+        var buyers = buyerRepository.findBuyerEntitiesByNameContainsIgnoreCase(model.getName());
+        return buyers.stream().map(BuyerMapper.BUYER_MAPPER::toDomain).collect(Collectors.toList());
     }
 
 }
