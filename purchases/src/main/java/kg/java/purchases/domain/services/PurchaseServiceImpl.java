@@ -74,4 +74,10 @@ public class PurchaseServiceImpl implements PurchaseService {
         return purchases.stream().map(PurchaseMapper.PURCHASE_MAPPER::toDomain).collect(Collectors.toList());
     }
 
+    @Override
+    public List<PurchaseDto> findByProductName(FindPurchasesByProductNameDto model) {
+        var purchases = purchaseRepository.findByProductName(model.getProductName());
+        return purchases.stream().map(PurchaseMapper.PURCHASE_MAPPER::toDomain).collect(Collectors.toList());
+    }
+
 }

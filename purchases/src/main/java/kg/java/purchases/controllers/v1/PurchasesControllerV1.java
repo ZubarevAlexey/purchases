@@ -71,4 +71,12 @@ public class PurchasesControllerV1 {
             return ResponseEntity.internalServerError().build();
         }
     }
+    @PostMapping("/productName")
+    public ResponseEntity<List<PurchaseDto>> findByProductName(@RequestBody FindPurchasesByProductNameDto model) {
+        try {
+            return ResponseEntity.ok(purchaseFacade.findByProductName(model));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }

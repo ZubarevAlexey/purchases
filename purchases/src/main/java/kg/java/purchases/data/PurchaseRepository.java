@@ -19,4 +19,10 @@ public interface PurchaseRepository extends JpaRepository<PurchaseEntity,Long> {
             "on b.id = p.buyer.id" +
             " where p.buyer.name=:buyerName")
     List<PurchaseEntity> findByBuyerName(@Param("buyerName")String buyerName);
+
+    @Query("SELECT p FROM PurchaseEntity p " +
+            "inner join ProductEntity pr " +
+            "on pr.id = p.product.id" +
+            " where p.product.name=:productName")
+    List<PurchaseEntity> findByProductName(@Param("productName")String productName);
 }
