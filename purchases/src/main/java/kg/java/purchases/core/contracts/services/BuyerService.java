@@ -1,8 +1,8 @@
 package kg.java.purchases.core.contracts.services;
 
 
-import kg.java.purchases.core.exceptions.EntityNotFoundException;
 import kg.java.purchases.core.exceptions.EntityDuplicateException;
+import kg.java.purchases.core.exceptions.EntityNotFoundException;
 import kg.java.purchases.core.models.dtos.buyer.*;
 import org.springframework.http.HttpStatus;
 
@@ -15,6 +15,7 @@ public interface BuyerService {
     HttpStatus delete(DeleteBuyerDto model) throws EntityNotFoundException;
 
     BuyerDto findById(FindByIdBuyerDto model) throws EntityNotFoundException;
+
 
 
 
