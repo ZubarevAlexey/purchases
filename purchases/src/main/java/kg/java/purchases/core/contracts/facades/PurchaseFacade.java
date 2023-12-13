@@ -13,5 +13,6 @@ public interface PurchaseFacade {
     HttpStatus delete(DeletePurchaseDto model) throws EntityNotFoundException;
     PurchaseDto findById(FindByIdPurchaseDto model) throws EntityNotFoundException;
     List<PurchaseDto> findByBuyerName(FindPurchasesByBuyerNameDto model);
+    List<PurchaseDto> findByProductName(FindPurchasesByProductNameDto model);
 
 }

@@ -42,4 +42,9 @@ public class PurchaseFacadeImpl implements PurchaseFacade {
     public List<PurchaseDto> findByBuyerName(FindPurchasesByBuyerNameDto model) {
         return purchaseService.findByBuyerName(model);
     }
+
+    @Override
+    public List<PurchaseDto> findByProductName(FindPurchasesByProductNameDto model) {
+        return purchaseService.findByProductName(model);
+    }
 }
