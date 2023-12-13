@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/buyer")
 public class BuyerControllerV1 {
@@ -60,6 +62,14 @@ public class BuyerControllerV1 {
             return ResponseEntity.badRequest().build();
         }
         catch (Exception e){
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+    @PostMapping("/buyerName")
+    public ResponseEntity<List<BuyerDto>> findByName(@RequestBody FindBuyersByNameDto model) {
+        try {
+            return ResponseEntity.ok(buyerFacade.findByName(model));
+        }catch (Exception e){
             return ResponseEntity.internalServerError().build();
         }
     }
